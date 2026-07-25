@@ -1,0 +1,6 @@
+{
+  "name": "Sheetal & Prakash Wedding",
+  "description": "Luxury minimal wedding invitation for Sheetal and Prakash Ji.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

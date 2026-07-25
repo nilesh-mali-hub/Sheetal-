@@ -1,0 +1,106 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Cormorant Garamond", serif;
+  --font-cinzel: "Cinzel", serif;
+  --font-script: "Mrs Saint Delafield", cursive;
+  --font-hindi: "Yatra One", cursive;
+  
+  --color-maroon-deep: #360A0E;
+  --color-maroon: #6B131B;
+  --color-maroon-warm: #8A2430;
+  --color-marigold: #E2861C;
+  --color-marigold-light: #F3B23F;
+  --color-gold: #C9A24B;
+  --color-gold-light: #ECCB84;
+  --color-ivory: #FBF1E4;
+}
+
+@layer base {
+  body {
+    @apply font-sans bg-maroon-deep text-ivory overflow-x-hidden antialiased;
+  }
+}
+
+.bg-motif {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  background:
+    radial-gradient(1100px 620px at 50% -8%, rgba(226,134,28,0.10), transparent 60%),
+    radial-gradient(900px 520px at 100% 108%, rgba(201,162,75,0.08), transparent 60%);
+}
+
+.cover-clip {
+  clip-path: circle(150% at 50% 85%);
+  transition: clip-path 1.3s cubic-bezier(.7,0,.2,1), visibility 1.3s;
+}
+.cover-clip.opened {
+  clip-path: circle(0% at 50% 85%);
+}
+.cover-clip.hidden {
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.flame {
+  transform-origin: 60px 62px;
+  opacity: 0;
+}
+.flame-glow {
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+.lit .flame {
+  opacity: 1;
+  animation: flicker 1.6s ease-in-out infinite;
+}
+.lit .flame-glow {
+  opacity: 1;
+}
+@keyframes flicker {
+  0%,100% { transform: scaleY(1) scaleX(1) rotate(0deg); }
+  25% { transform: scaleY(1.08) scaleX(0.95) rotate(-2deg); }
+  50% { transform: scaleY(0.96) scaleX(1.05) rotate(1deg); }
+  75% { transform: scaleY(1.05) scaleX(0.97) rotate(-1deg); }
+}
+
+.petal {
+  position: fixed; top: -5%; z-index: 2; pointer-events: none;
+  width: 10px; height: 10px; border-radius: 0 60% 0 60%;
+  background: var(--color-marigold-light); opacity: 0.6;
+  animation: fall linear infinite;
+}
+@keyframes fall {
+  0% { transform: translateY(0) rotate(0deg); }
+  100% { transform: translateY(110vh) rotate(260deg); }
+}
+
+.paisley path {
+  fill: none; stroke: var(--color-gold); stroke-width: 1.2; stroke-linecap: round;
+  stroke-dasharray: 600; stroke-dashoffset: 600;
+}
+.show-paisley path {
+  animation: draw 2.2s ease forwards 0.5s;
+}
+@keyframes draw {
+  to { stroke-dashoffset: 0; }
+}
+
+.glass-card {
+  background: linear-gradient(180deg, rgba(226,134,28,0.06), rgba(201,162,75,0.02));
+  border: 1px solid rgba(201,162,75,0.35);
+  border-radius: 2px;
+  position: relative;
+}
+.glass-card::before {
+  content: ""; position: absolute; top: -1px; left: 20px; right: 20px; height: 3px;
+  background: linear-gradient(90deg, var(--color-marigold), var(--color-gold));
+}
+
+/* Scrollbar Hide */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
