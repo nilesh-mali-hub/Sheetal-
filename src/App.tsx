@@ -1,6 +1,7 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import Lenis from 'lenis';
 import { motion } from 'motion/react';
+import ReactPlayer from 'react-player';
 import Intro from './components/Intro';
 import Hero from './components/Hero';
 import Events from './components/Events';
@@ -42,7 +43,6 @@ const HeartDivider = () => (
 export default function App() {
   const [opened, setOpened] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
-  const audioRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
     const lenis = new Lenis({
@@ -71,13 +71,7 @@ export default function App() {
     setOpened(true);
     
     // Play music when opened
-    if (audioRef.current) {
-      audioRef.current.play().then(() => {
-        setIsPlaying(true);
-      }).catch(err => {
-        console.log("Audio autoplay failed:", err);
-      });
-    }
+    setIsPlaying(true);
 
     // Spawn petals
     for (let i = 0; i < 22; i++) {
@@ -93,15 +87,7 @@ export default function App() {
   };
 
   const toggleMusic = () => {
-    if (audioRef.current) {
-      if (audioRef.current.paused) {
-        audioRef.current.play();
-        setIsPlaying(true);
-      } else {
-        audioRef.current.pause();
-        setIsPlaying(false);
-      }
-    }
+    setIsPlaying(!isPlaying);
   };
 
   return (
@@ -156,9 +142,16 @@ export default function App() {
         </div>
       </button>
 
-      <audio ref={audioRef} loop preload="none">
-        <source src="https://assets.mixkit.co/music/preview/mixkit-indian-meditation-ambient-flute-114.mp3" type="audio/mpeg" />
-      </audio>
+      <div className="hidden">
+        <ReactPlayer 
+          url="https://www.youtube.com/watch?v=ldxLcAqLlxg" 
+          playing={isPlaying} 
+          loop={true} 
+          volume={0.5} 
+          width="0" 
+          height="0" 
+        />
+      </div>
     </div>
   );
 }
