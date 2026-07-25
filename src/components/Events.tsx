@@ -1,5 +1,4 @@
 import React from 'react';
-import { Calendar, MapPin, Navigation } from 'lucide-react';
 
 export default function Events() {
   const events = [
@@ -8,32 +7,35 @@ export default function Events() {
       date: "03 Dec 2026",
       time: "10:00 AM",
       venue: "The Royal Gardens",
-      dressCode: "Yellow / White",
-      icon: "🌼"
+      emoji: "🌼"
     },
     {
       title: "Mehendi",
       date: "03 Dec 2026",
       time: "04:00 PM",
       venue: "Poolside Pavilion",
-      dressCode: "Green / Floral",
-      icon: "🌿"
+      emoji: "🌿"
     },
     {
       title: "Sangeet",
-      date: "04 Dec 2026",
+      date: "03 Dec 2026",
       time: "07:00 PM",
       venue: "Grand Ballroom",
-      dressCode: "Glamorous Traditional",
-      icon: "🎵"
+      emoji: "🎵"
+    },
+    {
+      title: "Bindoli",
+      date: "04 Dec 2026",
+      time: "09:00 PM",
+      venue: "Grand Ballroom",
+      emoji: "🥁"
     },
     {
       title: "The Wedding",
       date: "05 Dec 2026",
       time: "06:00 PM",
       venue: "The Heritage Courtyard",
-      dressCode: "Royal Indian",
-      icon: "💍"
+      emoji: "💍"
     }
   ];
 
@@ -44,25 +46,25 @@ export default function Events() {
       
       <div className="mt-[56px] flex flex-col gap-[20px] max-w-[500px] mx-auto text-left">
         {events.map((event, idx) => (
-          <div key={idx} className="glass-card p-[34px_26px_28px]">
-            <div className="w-[36px] h-[36px] mb-4 flex items-center justify-center text-marigold-light text-2xl border border-gold/30 rounded-full">
-              {event.icon}
+          <div key={idx} className="glass-card p-[24px_26px] flex items-center gap-6 relative overflow-hidden group hover:border-gold/30 transition-colors">
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-gold/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+            
+            <div className="w-[64px] h-[64px] rounded-full flex items-center justify-center shrink-0 border border-gold/40 shadow-[0_0_15px_rgba(201,162,75,0.15)] bg-gold/5 text-3xl group-hover:scale-110 transition-transform duration-500">
+              {event.emoji}
             </div>
-            
-            <h3 className="m-0 mb-[10px] text-[1.5rem] text-marigold-light font-medium font-sans">{event.title}</h3>
-            
-            <p className="m-0 text-gold-light text-[1rem] leading-[1.65] opacity-90">
-              {event.date} — {event.time} <br />
-              {event.venue}
-            </p>
-            
-            <span className="block mt-3 text-[0.7rem] tracking-[0.04em] text-ivory/40 italic font-sans">
-              Dress Code: {event.dressCode}
-            </span>
-            
-            <a href="https://www.google.com/maps/search/?api=1&query=24.533521,72.834698" target="_blank" rel="noopener noreferrer" className="inline-block mt-4 font-cinzel text-[0.68rem] tracking-[0.14em] uppercase text-marigold-light border-b border-marigold pb-[2px]">
-              Get Directions
-            </a>
+
+            <div className="flex-1">
+              <h3 className="m-0 mb-[8px] text-[1.5rem] text-marigold-light font-medium font-sans flex items-center gap-2">
+                {event.title}
+              </h3>
+              <p className="m-0 text-gold-light text-[1.05rem] leading-[1.5] opacity-90">
+                {event.date} <span className="opacity-50 mx-1">|</span> <span className="italic">{event.time}</span>
+              </p>
+              <p className="m-0 text-ivory/70 text-[0.85rem] mt-1.5 flex items-center gap-1.5 font-sans tracking-wide">
+                <span className="w-1.5 h-1.5 rounded-full bg-gold/50 inline-block"></span>
+                {event.venue}
+              </p>
+            </div>
           </div>
         ))}
       </div>

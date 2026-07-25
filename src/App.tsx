@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Lenis from 'lenis';
+import { motion } from 'motion/react';
 import Intro from './components/Intro';
 import Hero from './components/Hero';
 import Events from './components/Events';
@@ -8,6 +9,35 @@ import Gallery from './components/Gallery';
 import Wishes from './components/Wishes';
 import Footer from './components/Footer';
 import Background3D from './components/Background3D';
+import FloatingIcons from './components/FloatingIcons';
+
+const SectionWrapper = ({ children, delay = 0 }: { children: React.ReactNode, delay?: number }) => (
+  <motion.div
+    initial={{ opacity: 0, y: 50 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true, margin: "-100px" }}
+    transition={{ duration: 0.8, ease: "easeOut", delay }}
+    className="relative"
+  >
+    {children}
+  </motion.div>
+);
+
+const HeartDivider = () => (
+  <motion.div 
+    initial={{ opacity: 0, scale: 0.5 }}
+    whileInView={{ opacity: 1, scale: 1 }}
+    viewport={{ once: true, margin: "-50px" }}
+    transition={{ duration: 0.8, ease: "easeOut" }}
+    className="flex justify-center items-center py-8"
+  >
+    <div className="w-16 h-px bg-gradient-to-r from-transparent via-gold/50 to-transparent"></div>
+    <svg className="w-5 h-5 mx-4 text-marigold-light animate-pulse" fill="currentColor" viewBox="0 0 24 24">
+      <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+    </svg>
+    <div className="w-16 h-px bg-gradient-to-r from-transparent via-gold/50 to-transparent"></div>
+  </motion.div>
+);
 
 export default function App() {
   const [opened, setOpened] = useState(false);
@@ -34,18 +64,21 @@ export default function App() {
   }, []);
 
   const handleLight = () => {
-    if (audioRef.current) {
-      audioRef.current.play().then(() => {
-        setIsPlaying(true);
-      }).catch(() => {
-        // Autoplay blocked
-      });
-    }
+    // Left for backward compatibility with Intro props, but play is handled in handleOpen
   };
 
   const handleOpen = () => {
     setOpened(true);
     
+    // Play music when opened
+    if (audioRef.current) {
+      audioRef.current.play().then(() => {
+        setIsPlaying(true);
+      }).catch(err => {
+        console.log("Audio autoplay failed:", err);
+      });
+    }
+
     // Spawn petals
     for (let i = 0; i < 22; i++) {
       const p = document.createElement('div');
@@ -74,6 +107,7 @@ export default function App() {
   return (
     <div className="relative min-h-screen text-ivory selection:bg-marigold/30">
       <Background3D />
+      <FloatingIcons />
       <div className="bg-motif"></div>
 
       <Intro opened={opened} onOpen={handleOpen} onLight={handleLight} />
@@ -85,12 +119,34 @@ export default function App() {
           </svg>
         </div>
 
-        <Hero opened={opened} />
-        <Events />
-        <Venue />
-        <Gallery />
-        <Wishes />
-        <Footer />
+        <SectionWrapper>
+          <Hero opened={opened} />
+        </SectionWrapper>
+        <HeartDivider />
+        
+        <SectionWrapper>
+          <Events />
+        </SectionWrapper>
+        <HeartDivider />
+        
+        <SectionWrapper>
+          <Venue />
+        </SectionWrapper>
+        <HeartDivider />
+        
+        <SectionWrapper>
+          <Gallery />
+        </SectionWrapper>
+        <HeartDivider />
+        
+        <SectionWrapper>
+          <Wishes />
+        </SectionWrapper>
+        <HeartDivider />
+        
+        <SectionWrapper>
+          <Footer />
+        </SectionWrapper>
       </main>
 
       <button 

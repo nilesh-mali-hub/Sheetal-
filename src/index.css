@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "Cormorant Garamond", serif;
+  --font-sans: "Times New Roman", Times, serif;
   --font-cinzel: "Cinzel", serif;
   --font-script: "Mrs Saint Delafield", cursive;
   --font-hindi: "Yatra One", cursive;
