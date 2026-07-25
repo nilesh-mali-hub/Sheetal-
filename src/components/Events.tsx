@@ -6,35 +6,30 @@ export default function Events() {
       title: "Haldi",
       date: "03 Dec 2026",
       time: "10:00 AM",
-      venue: "The Royal Gardens",
       emoji: "🌼"
     },
     {
       title: "Mehendi",
       date: "03 Dec 2026",
       time: "04:00 PM",
-      venue: "Poolside Pavilion",
       emoji: "🌿"
     },
     {
       title: "Sangeet",
       date: "03 Dec 2026",
       time: "07:00 PM",
-      venue: "Grand Ballroom",
       emoji: "🎵"
     },
     {
       title: "Bindoli",
       date: "04 Dec 2026",
       time: "09:00 PM",
-      venue: "Grand Ballroom",
       emoji: "🥁"
     },
     {
       title: "The Wedding",
       date: "05 Dec 2026",
       time: "06:00 PM",
-      venue: "The Heritage Courtyard",
       emoji: "💍"
     }
   ];
@@ -59,10 +54,6 @@ export default function Events() {
               </h3>
               <p className="m-0 text-gold-light text-[1.05rem] leading-[1.5] opacity-90">
                 {event.date} <span className="opacity-50 mx-1">|</span> <span className="italic">{event.time}</span>
-              </p>
-              <p className="m-0 text-ivory/70 text-[0.85rem] mt-1.5 flex items-center gap-1.5 font-sans tracking-wide">
-                <span className="w-1.5 h-1.5 rounded-full bg-gold/50 inline-block"></span>
-                {event.venue}
               </p>
             </div>
           </div>

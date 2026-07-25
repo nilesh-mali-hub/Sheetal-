@@ -130,11 +130,6 @@ export default function App() {
         <HeartDivider />
         
         <SectionWrapper>
-          <Venue />
-        </SectionWrapper>
-        <HeartDivider />
-        
-        <SectionWrapper>
           <Gallery />
         </SectionWrapper>
         <HeartDivider />
