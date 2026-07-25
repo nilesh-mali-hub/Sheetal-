@@ -7,49 +7,53 @@ interface IntroProps {
 }
 
 export default function Intro({ opened, onOpen, onLight }: IntroProps) {
-  const [lit, setLit] = useState(false);
   const [hidden, setHidden] = useState(false);
 
   const handleClick = () => {
-    if (opened || lit) return;
-    setLit(true);
-    onLight();
-    
-    setTimeout(() => {
-      onOpen();
-    }, 550);
+    if (opened) return;
+    onLight(); // trigger any background music if needed
+    onOpen();
 
     setTimeout(() => {
       setHidden(true);
-    }, 1850);
+    }, 2000);
   };
 
   return (
     <div 
-      className={`fixed inset-0 z-50 flex items-center justify-center cover-clip bg-[radial-gradient(1000px_700px_at_50%_20%,var(--color-maroon-warm),var(--color-maroon-deep)_65%)] ${opened ? 'opened' : ''} ${hidden ? 'hidden' : ''}`}
+      className={`fixed inset-0 z-50 flex items-center justify-center pointer-events-none ${hidden ? 'hidden' : ''}`}
+      style={{ perspective: '1200px' }}
     >
-      <div className="absolute inset-[18px] border border-gold/50 pointer-events-none after:content-[''] after:absolute after:w-[60px] after:h-[60px] after:border after:border-gold after:bottom-[-1px] after:right-[-1px] after:border-l-0 after:border-t-0 before:content-[''] before:absolute before:w-[60px] before:h-[60px] before:border before:border-gold before:top-[-1px] before:left-[-1px] before:border-r-0 before:border-b-0" />
+      {/* Left Door */}
+      <div 
+        className="absolute top-0 left-0 w-1/2 h-full bg-cover bg-left origin-left transition-transform duration-[1800ms] ease-[cubic-bezier(0.77,0,0.175,1)] pointer-events-auto shadow-[10px_0_30px_rgba(0,0,0,0.5)]"
+        style={{
+          backgroundImage: `url('https://res.cloudinary.com/dfknctbhw/image/upload/v1784968831/2fdde36e-b033-4565-8985-e1f6c97e9623_ny5ytc.png')`,
+          backgroundSize: '200% 100%',
+          transform: opened ? 'rotateY(-110deg)' : 'rotateY(0)'
+        }}
+      />
+      {/* Right Door */}
+      <div 
+        className="absolute top-0 right-0 w-1/2 h-full bg-cover bg-right origin-right transition-transform duration-[1800ms] ease-[cubic-bezier(0.77,0,0.175,1)] pointer-events-auto shadow-[-10px_0_30px_rgba(0,0,0,0.5)]"
+        style={{
+          backgroundImage: `url('https://res.cloudinary.com/dfknctbhw/image/upload/v1784968831/2fdde36e-b033-4565-8985-e1f6c97e9623_ny5ytc.png')`,
+          backgroundSize: '200% 100%',
+          transform: opened ? 'rotateY(110deg)' : 'rotateY(0)'
+        }}
+      />
       
-      <div className="text-center p-10 md:p-7 max-w-[480px]">
-        <span className="font-hindi text-2xl md:text-3xl text-marigold-light block mb-2">शुभ विवाह</span>
-        <p className="text-xs md:text-sm text-gold-light m-0 mb-8 italic">With the blessings of our families</p>
+      {/* Split Line */}
+      <div className={`absolute top-0 bottom-0 left-1/2 w-[2px] bg-black/40 -translate-x-1/2 transition-opacity duration-300 pointer-events-none ${opened ? 'opacity-0' : 'opacity-100'}`} />
 
+      {/* Button */}
+      <div className={`absolute bottom-[10%] left-1/2 -translate-x-1/2 transition-opacity duration-500 pointer-events-auto ${opened ? 'opacity-0' : 'opacity-100'}`}>
         <button 
-          className={`w-[150px] mx-auto mb-6 cursor-pointer bg-none border-none p-0 outline-none ${lit ? 'lit' : ''}`}
           onClick={handleClick}
-          aria-label="Light the diya to open your invitation"
+          className="bg-[#E9C36F] text-[#3A1D0B] font-serif tracking-[0.2em] uppercase text-sm md:text-base px-8 md:px-12 py-4 rounded-[2px] shadow-2xl transition-all hover:scale-105 hover:bg-[#F3D58B] hover:shadow-[0_0_20px_rgba(233,195,111,0.4)] active:scale-95 cursor-pointer border border-[#C9A24B]"
         >
-          <svg viewBox="0 0 120 100" className="w-full h-auto overflow-visible">
-            <ellipse cx="60" cy="72" rx="44" ry="10" fill="#3D1206" opacity="0.5"/>
-            <path d="M18 62 Q60 92 102 62 Q98 78 60 78 Q22 78 18 62 Z" fill="#B4762B"/>
-            <path d="M14 58 Q60 82 106 58 Q60 68 14 58 Z" fill="#E2861C"/>
-            <ellipse cx="60" cy="58" rx="46" ry="9" fill="#F3B23F"/>
-            <circle className="flame-glow" cx="60" cy="42" r="26" fill="#F3B23F" opacity="0.25" style={{ filter: 'blur(10px)' }}/>
-            <path className="flame" d="M60 20c6 8 10 14 10 21a10 10 0 0 1-20 0c0-7 4-13 10-21z" fill="#F3B23F"/>
-            <path className="flame opacity-85" d="M60 30c3 5 5 8 5 12a5 5 0 0 1-10 0c0-4 2-7 5-12z" fill="#8A2430" />
-          </svg>
+          Open Invitation
         </button>
-        <p className="text-[0.72rem] tracking-[0.2em] uppercase text-marigold-light opacity-85 animate-[pulse_2.2s_ease-in-out_infinite]">Tap to light the diya</p>
       </div>
     </div>
   );
