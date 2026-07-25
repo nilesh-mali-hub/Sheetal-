@@ -66,7 +66,7 @@ END:VCALENDAR`;
   };
 
   const handleShareWhatsApp = () => {
-    const message = `You are invited to the wedding of Sheetal & Prakash Ji! ✨\n\nSave the date: 5th December 2026\n\nView the invitation details here:\nhttps://sheetal-prakashji.vercel.app/`;
+    const message = `💍 You're Invited!\n\nJoin us in celebrating the wedding of Sheetal & Prakash Ji.\n\n📅 5th December 2026\n\n🌐 Invitation:\nhttps://sheetal-prakashji.vercel.app/\n\nWe look forward to celebrating with you! ❤️`;
     const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
   };
