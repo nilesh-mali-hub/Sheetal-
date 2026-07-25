@@ -7,6 +7,7 @@ import Venue from './components/Venue';
 import Gallery from './components/Gallery';
 import Wishes from './components/Wishes';
 import Footer from './components/Footer';
+import Background3D from './components/Background3D';
 
 export default function App() {
   const [opened, setOpened] = useState(false);
@@ -72,6 +73,7 @@ export default function App() {
 
   return (
     <div className="relative min-h-screen text-ivory selection:bg-marigold/30">
+      <Background3D />
       <div className="bg-motif"></div>
 
       <Intro opened={opened} onOpen={handleOpen} onLight={handleLight} />
