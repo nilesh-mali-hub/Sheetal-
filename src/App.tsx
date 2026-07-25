@@ -142,14 +142,23 @@ export default function App() {
         </div>
       </button>
 
-      <div className="hidden">
+      <div className="fixed bottom-0 right-0 w-px h-px opacity-0 pointer-events-none overflow-hidden z-[-1]">
         <ReactPlayer 
           url="https://www.youtube.com/watch?v=ldxLcAqLlxg" 
           playing={isPlaying} 
           loop={true} 
           volume={0.5} 
-          width="0" 
-          height="0" 
+          width="10px" 
+          height="10px"
+          config={{
+            youtube: {
+              playerVars: { 
+                autoplay: 1, 
+                controls: 0,
+                playsinline: 1
+              }
+            }
+          }}
         />
       </div>
     </div>
