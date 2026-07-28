@@ -24,8 +24,8 @@ export default function Gallery() {
 
   return (
     <section id="gallery" className="pt-[70px] px-6 pb-[100px] max-w-[940px] mx-auto text-center relative z-10">
-      <p className="font-cinzel text-[0.7rem] tracking-[0.32em] uppercase text-marigold m-0 mb-[10px]">A Few Moments</p>
-      <h2 className="text-[clamp(2.1rem,5vw,3rem)] text-ivory m-0 font-sans">Our Gallery</h2>
+      <p className="font-cinzel text-[0.85rem] sm:text-[1rem] tracking-[0.32em] uppercase text-marigold m-0 mb-[10px]">A Few Moments</p>
+      <h2 className="text-[clamp(2.8rem,8vw,3.5rem)] text-ivory m-0 font-sans">Our Gallery</h2>
       
       <div className="w-full h-[2px] mt-[60px] opacity-60 bg-[repeating-linear-gradient(90deg,var(--color-gold)_0_10px,transparent_10px_18px)]" aria-hidden="true"></div>
       

@@ -3,14 +3,17 @@ import React from 'react';
 export default function Footer() {
   return (
     <footer className="pt-[70px] px-6 pb-[54px] text-center text-gold-light relative z-10">
+      <h2 className="font-hindi text-[clamp(3.5rem,10vw,4.5rem)] text-marigold-light m-0 mb-2 font-medium leading-tight">धन्यवाद</h2>
+      <h3 className="font-sans text-[clamp(2.2rem,7vw,3rem)] text-ivory m-0 mb-8 italic tracking-wide">Thank You</h3>
+      
       <div className="w-[78px] h-[78px] mx-auto mb-4 border border-marigold rounded-full flex items-center justify-center font-sans text-[1.3rem] text-marigold-light">
         S&nbsp;P
       </div>
-      <p className="text-[0.85rem] opacity-65 m-0 italic font-sans mb-8">
-        With love and gratitude — 5th December 2026
+      <p className="text-[1rem] sm:text-[1.1rem] opacity-65 m-0 italic font-sans mb-8">
+        We eagerly await your presence to bless the couple.
       </p>
       <div className="mt-8 pt-6 border-t border-gold/20 flex flex-col items-center justify-center">
-        <p className="text-[0.75rem] font-sans tracking-wide text-ivory/60 flex items-center gap-1.5">
+        <p className="text-[0.85rem] sm:text-[0.95rem] font-sans tracking-wide text-ivory/60 flex items-center gap-1.5">
           Crafted with <span className="text-[#E2861C] animate-pulse">❤️</span> by 
           <a href="https://nileshmali2026.netlify.app/" target="_blank" rel="noopener noreferrer" className="font-medium text-[#F3B23F] relative inline-block cursor-pointer group">
             Nilesh Mali

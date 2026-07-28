@@ -52,26 +52,26 @@ export default function Wishes() {
 
   return (
     <section id="wishes" className="pt-[70px] px-6 pb-[100px] max-w-[940px] mx-auto text-center relative z-10">
-      <p className="font-cinzel text-[0.7rem] tracking-[0.32em] uppercase text-marigold m-0 mb-[10px]">Blessings</p>
-      <h2 className="text-[clamp(2.1rem,5vw,3rem)] text-ivory m-0 font-sans mb-12">Wishes Wall</h2>
+      <p className="font-cinzel text-[0.85rem] sm:text-[1rem] tracking-[0.32em] uppercase text-marigold m-0 mb-[10px]">Blessings</p>
+      <h2 className="text-[clamp(2.8rem,8vw,3.5rem)] text-ivory m-0 font-sans mb-12">Wishes Wall</h2>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 text-left">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 text-left">
         {/* Write a wish form */}
-        <div className="glass-card p-8">
-          <h4 className="text-[1.5rem] font-sans text-marigold-light mb-6 m-0">Leave a Message</h4>
+        <div className="glass-card p-5 sm:p-8">
+          <h4 className="text-[1.8rem] sm:text-[2rem] font-sans text-marigold-light mb-6 m-0">Leave a Message</h4>
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <input required type="text" name="name" placeholder="Your Name" className="w-full bg-maroon-deep/50 border border-gold/30 p-3 text-ivory focus:border-marigold outline-none transition-colors rounded-none text-sm font-sans" />
+              <input required type="text" name="name" placeholder="Your Name" className="w-full bg-maroon-deep/50 border border-gold/30 p-4 sm:p-3 text-ivory focus:border-marigold outline-none transition-colors rounded-none text-base sm:text-sm font-sans" />
             </div>
             <div>
-              <textarea required name="message" placeholder="Your Blessings & Wishes..." rows={4} className="w-full bg-maroon-deep/50 border border-gold/30 p-3 text-ivory focus:border-marigold outline-none transition-colors rounded-none text-sm font-sans" />
+              <textarea required name="message" placeholder="Your Blessings & Wishes..." rows={4} className="w-full bg-maroon-deep/50 border border-gold/30 p-4 sm:p-3 text-ivory focus:border-marigold outline-none transition-colors rounded-none text-base sm:text-sm font-sans" />
             </div>
             {status === 'success' && <p className="text-marigold-light text-sm m-0">Message posted successfully!</p>}
             {status === 'error' && <p className="text-red-400 text-sm m-0">Failed to post message.</p>}
             <button 
               disabled={status === 'loading'}
               type="submit" 
-              className="w-full bg-marigold hover:bg-marigold-light text-maroon-deep font-cinzel tracking-widest uppercase text-[0.8rem] py-4 transition-colors disabled:opacity-50 flex justify-center items-center border-none cursor-pointer"
+              className="w-full bg-marigold hover:bg-marigold-light text-maroon-deep font-cinzel tracking-widest uppercase text-[0.95rem] py-4 transition-colors disabled:opacity-50 flex justify-center items-center border-none cursor-pointer"
             >
               {status === 'loading' ? <Loader2 className="w-4 h-4 animate-spin" /> : 'Post Wish'}
             </button>
@@ -92,15 +92,15 @@ export default function Wishes() {
                   className="bg-gradient-to-b from-[rgba(226,134,28,0.04)] to-transparent border border-gold/20 p-6 rounded-[2px]"
                 >
                   <div className="flex items-start gap-4">
-                    <div className="w-10 h-10 rounded-full border border-gold/30 flex items-center justify-center flex-shrink-0 text-marigold">
-                      <Heart className="w-4 h-4" />
+                    <div className="w-12 h-12 rounded-full border border-gold/30 flex items-center justify-center flex-shrink-0 text-marigold">
+                      <Heart className="w-5 h-5" />
                     </div>
                     <div>
-                      <h5 className="font-sans font-semibold text-ivory text-lg m-0">{wish.name}</h5>
-                      <p className="text-[0.7rem] text-gold-light opacity-60 font-sans mb-3 mt-1 uppercase tracking-widest">
+                      <h5 className="font-sans font-semibold text-ivory text-xl m-0">{wish.name}</h5>
+                      <p className="text-[0.85rem] text-gold-light opacity-60 font-sans mb-3 mt-1 uppercase tracking-widest">
                         {new Date(wish.createdAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
                       </p>
-                      <p className="font-sans text-sm text-ivory/80 leading-relaxed m-0 italic">
+                      <p className="font-sans text-base sm:text-sm text-ivory/80 leading-relaxed m-0 italic">
                         "{wish.message}"
                       </p>
                     </div>
